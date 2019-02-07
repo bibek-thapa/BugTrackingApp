@@ -18,7 +18,7 @@
   <tbody>
     <% @bugs.each do |bug| %>
 	    <tr>
-           <td><%=(bug.user.try(:fname) && bug.user.try(:lname)||"NA")%></td>
+           <td><%=(bug.user.try(:fname) +" "+ bug.user.try(:lname)||"NA")%></td>
 
         <td><%= bug.titile %></td>
         <td><%= bug.description %></td>

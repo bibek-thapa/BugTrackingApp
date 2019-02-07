@@ -4,7 +4,8 @@
 
 <table>
   <thead>
-    <tr>
+	  <tr>
+      <th>Author</th>		  
       <th>Titile</th>
       <th>Description</th>
       <th>Issue type</th>
@@ -16,7 +17,9 @@
 
   <tbody>
     <% @bugs.each do |bug| %>
-      <tr>
+	    <tr>
+           <td><%=(bug.user.try(:lname)||"NA")%></td>
+
         <td><%= bug.titile %></td>
         <td><%= bug.description %></td>
         <td><%= bug.issue_type %></td>

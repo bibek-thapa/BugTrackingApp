@@ -11,19 +11,17 @@
     </div>
   <% end %>
 	
-  <div class="field">
-          <%=form.label:user_id%>
-          <%=form.select:user_id,
-          options_for_select(User.all.collect{|a|["#{a.lname},
-          #{a.fname}",a.id]},
-          selected:(@bug.user?@bug.user.id:User.first.id)),
-          {}%>
-  </div>
+ 
 
 
 
 
-
+ <div class="field">
+    <%= form.label :user_id %>
+    <%= form.select :user_id,
+      options_for_select(User.all.collect {|a| ["#{a.lname},#{a.fname}", a.id]},
+       selected: (@bug.user ? @bug.user.id : User.first.id)), {} %>
+</div>
 
 
 
@@ -51,6 +49,7 @@
     <%= form.label :status %>
     <%= form.select:status,@statuses.keys,selected:@bug.status %>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>

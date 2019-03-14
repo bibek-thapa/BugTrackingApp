@@ -16,7 +16,7 @@
 
 
 
- <div class="field">
+ <div class="form-group">
     <%= form.label :user_id %>
     <%= form.select :user_id,
       options_for_select(User.all.collect {|a| ["#{a.lname},#{a.fname}", a.id]},
@@ -25,33 +25,36 @@
 
 
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :titile %>
-    <%= form.text_field :titile %>
+    <%= form.text_field :titile ,class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description,class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :issue_type %>
-    <%= form.select:issue_type,@issuetypes.keys,selected:@bug.issue_type %>
+    <%=  form.select:issue_type,@issuetypes.keys,selected:@bug.issue_type,class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :priority %>
-  	 <%= form.select:priority,@priorities.keys,selected:@bug.priority %>  
+  	 <%= form.select:priority,@priorities.keys,selected:@bug.priority%>  
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :status %>
-    <%= form.select:status,@statuses.keys,selected:@bug.status %>
+    
+    <%= form.select:status,@statuses.keys,selected:@bug.status%>
+   
   </div>
+ 
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary"%>
   </div>
 <% end %>

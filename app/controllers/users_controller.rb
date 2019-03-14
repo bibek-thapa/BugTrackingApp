@@ -24,6 +24,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    thumb_upload = params[:user][:thumbnail]
+    params[:user][:thumbnail] = thumb_upload.original_filename
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -40,6 +42,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    thumb_upload = params[:user][:thumbnail]
+    params[:user][:thumbnail] = thumb_upload.original_filename
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

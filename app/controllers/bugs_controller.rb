@@ -6,6 +6,25 @@ class BugsController < ApplicationController
   # GET /bugs.json
   def index
     @bugs = Bug.all
+
+
+    # Apply XSLT
+    document = Nokogiri::XML(@bugs.as_json.to_xml)
+    template = Nokogiri::XSLT(File.read('app/assets/bug.xsl'));
+    transformed_document = template.transform(document) 
+
+    # dumps the transformed document to the console so you can see the effects
+     puts "---\nBefore"
+     puts document
+     puts "---\nAfter"
+     puts transformed_document 
+    respond_to do |format|
+      format.html{render :index}
+      format.json{render :index, status: :ok}
+      #format.xml{render xml: @bugs.as_json}
+      format.xml {render xml: transformed_document}
+    end
+
   end
 
   # GET /bugs/1
@@ -76,8 +95,9 @@ class BugsController < ApplicationController
     end
 
     def set_alltypes
-	@issuetypes=Bug.issue_types	    
-	@priorities=Bug.priorities
+	    @issuetypes=Bug.issue_types	    
+	    @priorities=Bug.priorities
     	@statuses=Bug.statuses	
     end
 end
+

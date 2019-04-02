@@ -19,7 +19,8 @@
     console.log("Click!");
 
     // Replace URL below with the URL for your server.
-    ajax.open("GET", 'https://limitless-citadel-39085.herokuapp.com/bugs.json');
+    ajax.open("GET", 'http://localhost:3000/bugs.json');
+  //  ajax.open("GET", 'https://limitless-citadel-39085.herokuapp.com/bugs.json');
     ajax.onreadystatechange = function () {
       console.log("Ajax state: " + ajax.readyState);
       if (ajax.readyState === 4 && ajax.status === 200) {
